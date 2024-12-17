@@ -150,23 +150,13 @@ Airflow uses Connections to connect to external systems like databases. To confi
 
 - In the "Connection" form:
 
-  - Conn Id: airflow-db (This is the default ID used in the docker-compose.yml configuration.)
+  - Conn Id: airflow-db
   - Conn Type: Postgres
   - Host: postgres (This is the service name of the PostgreSQL container in your docker-compose.yml)
   - Schema: airflow (This is the name of the database you want to connect to, as defined in docker-compose.yml)
   - Login: airflow (Username for PostgreSQL)
   - Password: airflow (Password for PostgreSQL)
   - Port: 5432 (PostgreSQL default port)
-
-- Example configuration:
-
-  - Conn Id: airflow-db
-  - Conn Type: Postgres
-  - Host: postgres
-  - Schema: airflow
-  - Login: airflow
-  - Password: airflow
-  - Port: 5432
 
 ## Directory Structure
 
