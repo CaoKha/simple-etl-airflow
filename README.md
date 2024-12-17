@@ -197,6 +197,15 @@ Airflow uses Connections to connect to external systems like databases. To confi
 
 ![airflowdb_config](./docs/postgres-config.png)
 
+### LEFT JOIN results
+
+- Departments table:
+  ![departments](./docs/departments.png)
+- Employees table:
+  ![employees](./docs/employees.png)
+- Join Result table:
+  ![join_result](./docs/join-result.png)
+
 ## Troubleshooting
 
 - Airflow UI not accessible: Ensure all services are up and healthy:
