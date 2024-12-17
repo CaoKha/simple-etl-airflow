@@ -3,7 +3,7 @@ DOCKER_COMPOSE = docker compose
 
 # Lancer les services
 start:
-	$(DOCKER_COMPOSE) up --build
+	$(DOCKER_COMPOSE) up --build -d
 
 # Arrêter les services
 stop:
@@ -20,6 +20,9 @@ backfill:
 # Nettoyer les fichiers de sortie
 clean:
 	rm -rf data/json_data/* data/html_data/*
+
+docker-clean:
+	$(DOCKER_COMPOSE) down --volumes --rmi all
 
 # Recréer les services
 rebuild:
