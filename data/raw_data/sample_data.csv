@@ -1,0 +1,11 @@
+id,name,age,city,country,salary,department,date_joined,is_active,rating
+1,John Doe,34,New York,USA,65000,Engineering,2022-01-15,True,4.5
+2,Jane Smith,29,London,UK,48000,Marketing,2021-06-20,False,3.8
+3,Bob Johnson,42,Paris,France,72000,Finance,2019-11-02,True,4.9
+4,Alice Brown,26,Berlin,Germany,50000,HR,2023-03-10,True,4.1
+5,Tom White,37,Madrid,Spain,60000,Sales,2020-07-14,False,3.5
+6,Susan Green,31,Rome,Italy,58000,IT,2021-12-05,True,4.3
+7,James Black,45,Tokyo,Japan,75000,Operations,2018-09-12,True,4.7
+8,Emma Wilson,28,Sydney,Australia,54000,Engineering,2022-05-30,False,3.9
+9,Michael Lee,39,Toronto,Canada,69000,Marketing,2020-01-25,True,4.6
+10,Sarah Brown,33,Amsterdam,Netherlands,62000,Finance,2019-08-18,True,4.2
