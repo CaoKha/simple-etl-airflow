@@ -72,7 +72,7 @@ Trigger a backfill to process historical data for the simple_etl_pipeline DAG:
 make backfill
 ```
 
-This command runs a backfill for the date range 2024-12-16 to 2024-12-17. 5. Clean Output Files
+This command runs a backfill for the date range 2024-12-16 to 2024-12-17.
 
 ### 5. Clean Output Files
 
@@ -105,38 +105,39 @@ make docker-clean
 
 ## Workflow
 
-1. Start the Pipeline:
+1/ Start the Pipeline:
 
 - Run `make start` to spin up all services.
 
-2. Monitor Airflow UI:
+2/ Monitor Airflow UI:
 
 - Visit <http://localhost:8080> and monitor the DAGs.
 - Trigger the DAG manually or wait for its scheduled run.
 
-3. Backfill Historical Data:
+3/ Backfill Historical Data:
 
 - Run `make backfill` to execute the DAG for historical dates.
 
-4. Clean Output Files:
+4/ Clean Output Files:
 
 - Use `make clean` to remove intermediate and output data.
 
-5. Stop Services:
+5/ Stop Services:
 
 - Use `make stop` when finished.
 
-6. Rebuild (Optional):
+6/ Rebuild (Optional):
 
 - If services need to be recreated, use `make rebuild`.
 
-7. Remove All Services:
+7/ Remove All Services:
 
 - If you want to clean up everything, use `make docker-clean` to clean up.
 
 ## Setup PostgresSQL Connection in Airflow
 
-Airflow uses Connections to connect to external systems like databases. To configure a PostgreSQL connection for Airflow, follow these steps:
+Airflow uses Connections to connect to external systems like databases.
+To configure a PostgreSQL connection for Airflow, follow these steps:
 
 ### Define Connection Details
 
@@ -152,8 +153,10 @@ Airflow uses Connections to connect to external systems like databases. To confi
 
   - Conn Id: airflow-db
   - Conn Type: Postgres
-  - Host: postgres (This is the service name of the PostgreSQL container in your docker-compose.yml)
-  - Schema: airflow (This is the name of the database you want to connect to, as defined in docker-compose.yml)
+  - Host: postgres
+    (This is the service name of the PostgreSQL container in your docker-compose.yml)
+  - Schema: airflow
+    (This is the name of the database you want to connect to, as defined in docker-compose.yml)
   - Login: airflow (Username for PostgreSQL)
   - Password: airflow (Password for PostgreSQL)
   - Port: 5432 (PostgreSQL default port)
