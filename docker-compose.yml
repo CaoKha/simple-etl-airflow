@@ -287,5 +287,20 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
+  pgadmin:
+    image: dpage/pgadmin4:8.14
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "5050:80"  # Access pgAdmin via http://localhost:5050
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin  # To persist pgAdmin data
+    depends_on:
+      - postgres  # Ensure PostgreSQL is available before pgAdmin starts
+    restart: always
+
 volumes:
   postgres-db-volume:
+  pgadmin-data:

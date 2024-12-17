@@ -15,6 +15,7 @@ HTML_OUTPUT_PATH: str = "/opt/airflow/data/html_data/response.html"
 os.makedirs(os.path.dirname(JSON_OUTPUT_PATH), exist_ok=True)
 os.makedirs(os.path.dirname(HTML_OUTPUT_PATH), exist_ok=True)
 
+
 def extract_transform() -> None:
     """
     Fonction pour extraire des données depuis un fichier CSV et les transformer en format JSON.
@@ -29,12 +30,15 @@ def extract_transform() -> None:
             # Sauvegarde des données JSON dans un fichier
             with open(JSON_OUTPUT_PATH, "w", encoding="utf-8") as f:
                 f.write(data_json)
-            print(f"Transformation réussie : les données sont sauvegardées dans {JSON_OUTPUT_PATH}")
+            print(
+                f"Transformation réussie : les données sont sauvegardées dans {JSON_OUTPUT_PATH}"
+            )
         else:
             print("Aucune données à transformer.")
     except Exception as e:
         print(f"Erreur lors de l'extraction/transformation des données : {e}")
         raise
+
 
 def fetch_and_save_html() -> None:
     """
@@ -43,21 +47,26 @@ def fetch_and_save_html() -> None:
     try:
         ua = UserAgent()
         headers = {
-            "User-Agent": ua.random,
+            "User-Agent": ua.random,  # éviter bot detection
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
             "Accept-Language": "en-US,en;q=0.5",
             "Accept-Encoding": "gzip, deflate, br, zstd",
         }
-        response: requests.Response = requests.get("https://group.bnpparibas", headers=headers)
-        response.encoding = 'utf-8'
+        response: requests.Response = requests.get(
+            "https://group.bnpparibas", headers=headers
+        )
+        response.encoding = "utf-8"
         print("Requête HTTP accomplie. response.status_code:", response.status_code)
         # Sauvegarde de la réponse HTML dans un fichier
         with open(HTML_OUTPUT_PATH, "w", encoding="utf-8") as f:
             f.write(response.text)
-        print(f"Requête HTTP réussie : le fichier HTML est sauvegardé dans {HTML_OUTPUT_PATH}")
+        print(
+            f"Requête HTTP réussie : le fichier HTML est sauvegardé dans {HTML_OUTPUT_PATH}"
+        )
     except Exception as e:
         print(f"Erreur lors de la requête HTTP : {e}")
         raise
+
 
 # Configuration par défaut du DAG
 default_args: dict = {
@@ -74,9 +83,8 @@ with DAG(
     default_args=default_args,
     schedule_interval="@daily",
     catchup=False,
-    description="Un DAG simple avec ETL et requête HTTP parallèle."
+    description="Un DAG simple avec ETL et requête HTTP parallèle.",
 ) as dag:
-    
     task_extract_transform: PythonOperator = PythonOperator(
         task_id="extract_and_transform",
         python_callable=extract_transform,

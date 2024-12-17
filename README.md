@@ -31,7 +31,7 @@ This will:
 
 ### 3. Access the Airflow UI
 
-- Open a web browser and navigate to [http://localhost:8080](http://localhost:8080.)
+- Open a web browser and navigate to `http://localhost:8080`
 - Use the default Airflow credentials:
   - Username: airflow
   - Password: airflow
@@ -134,6 +134,40 @@ make docker-clean
 
 - If you want to clean up everything, use `make docker-clean` to clean up.
 
+## Setup PostgresSQL Connection in Airflow
+
+Airflow uses Connections to connect to external systems like databases. To configure a PostgreSQL connection for Airflow, follow these steps:
+
+### Define Connection Details
+
+- Open the Airflow web UI by navigating to `http://localhost:8080`.
+
+- Log in with the administrator username and password (default: airflow / airflow).
+
+- In the Airflow UI, click on Admin in the top menu, and then select Connections.
+
+- Click on the + button to add a new connection.
+
+- In the "Connection" form:
+
+  - Conn Id: airflow-db (This is the default ID used in the docker-compose.yml configuration.)
+  - Conn Type: Postgres
+  - Host: postgres (This is the service name of the PostgreSQL container in your docker-compose.yml)
+  - Schema: airflow (This is the name of the database you want to connect to, as defined in docker-compose.yml)
+  - Login: airflow (Username for PostgreSQL)
+  - Password: airflow (Password for PostgreSQL)
+  - Port: 5432 (PostgreSQL default port)
+
+- Example configuration:
+
+  - Conn Id: airflow-db
+  - Conn Type: Postgres
+  - Host: postgres
+  - Schema: airflow
+  - Login: airflow
+  - Password: airflow
+  - Port: 5432
+
 ## Directory Structure
 
 ```txt
@@ -141,7 +175,8 @@ make docker-clean
 ├── config
 │   └── airflow.cfg
 ├── dags
-│   ├── etl_pipeline.py
+│   ├── simple_etl_pipeline.py
+│   └── create_tables_with_insert_and_left_join.py
 ├── data
 │   ├── html_data
 │   ├── json_data
@@ -156,6 +191,20 @@ make docker-clean
 ├── README.md
 └── uv.lock
 ```
+
+- simple_etl_pipeline.py contains the ETL pipeline for:
+
+  - convert `data/raw_data/sample_data.csv` to `data/json_data/transformed_data.json`
+  - go to `https://group.bnpparibas` and save HTML into file `data/html_data/response.html`
+
+- create_tables_with_insert_and_left_join.py contains tasks for:
+  - create tables `departments` and `employees` then do a `LEFT JOIN`
+    and save it into `join_result` table
+  - all tables are stored in airflow postgres database,
+    you can use pgadmin at `http://localhost:5050` to view the result
+    (email: <admin@admin.com>, password: admin)
+  - database config: host: postgres, user: airflow, password: airflow
+    ![airflowdb_config](./docs/postgres-config.png)
 
 ## Troubleshooting
 
