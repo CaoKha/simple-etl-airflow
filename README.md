@@ -200,10 +200,15 @@ Airflow uses Connections to connect to external systems like databases. To confi
 ### LEFT JOIN results
 
 - Departments table:
+
   ![departments](./docs/departments.png)
+
 - Employees table:
+
   ![employees](./docs/employees.png)
+
 - Join Result table:
+
   ![join_result](./docs/join-result.png)
 
 ## Troubleshooting
