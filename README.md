@@ -170,3 +170,7 @@ Look for any unhealthy containers.
 - Backfill not running: Verify that the DAG exists and the execution date is valid.
 
 - Logs not updating: Use `make logs` to inspect real-time logs from all services.
+
+## Notes
+
+- If you don't have `make` installed, read the Makefile for alternative commands.
