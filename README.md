@@ -204,7 +204,8 @@ Airflow uses Connections to connect to external systems like databases. To confi
     you can use pgadmin at `http://localhost:5050` to view the result
     (email: <admin@admin.com>, password: admin)
   - database config: host: postgres, user: airflow, password: airflow
-    ![airflowdb_config](./docs/postgres-config.png)
+
+![airflowdb_config](./docs/postgres-config.png)
 
 ## Troubleshooting
 
